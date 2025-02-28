@@ -46,4 +46,16 @@ public class UsuarioDaoImp implements UsuarioDao{
         BeanUtils.copyProperties(usuario, usuarioExistente, "id");
         return entityManager.merge(usuarioExistente);
     }
+
+    @Override
+    public Usuario getUsuarioLogged(Usuario usuario) {
+        String email = usuario.getEmail();
+        String password = usuario.getPassword();
+        String query = "FROM Usuario WHERE email = :email AND password = :password ";
+        List<Usuario> lista = entityManager.createQuery(query)
+                .setParameter("email", email)
+                .setParameter("password", password)
+                .getResultList();
+        return lista.get(0);
+    }
 }

@@ -14,4 +14,6 @@ public interface UsuarioDao {
     void postUsuario(Usuario usuario);
 
     Usuario putUsuario(int id, Usuario usuario);
+
+    Usuario getUsuarioLogged(Usuario usuario);
 }
